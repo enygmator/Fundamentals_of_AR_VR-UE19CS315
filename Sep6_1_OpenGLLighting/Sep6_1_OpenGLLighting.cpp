@@ -105,6 +105,7 @@ void setMaterial(
 
 float theta = 0;
 float camX = 3, camZ = 3;
+float angle = 0;
 
 /// <summary>
 /// a callback function that is executed at regular intervals of time registered under 'glutIdleFunc'
@@ -117,6 +118,8 @@ void timerCallBack_camera()
 	float rad = theta * PI / 180;
 	camX = 4 * cos(rad);
 	camZ = 4 * sin(rad);
+
+	angle+=0.5;
 
 	Sleep(60);
 
@@ -168,14 +171,28 @@ void display_rotating_camera_view()
 
 	*/
 
-	///render A simple Teapot
-	//set color
+	
+	/// Here, a stack is maintained in which all stuff like transformations done only aply to scenes drawn within the matrix that was push/poped
 	glColor3f(0, 1, 1);
-	//set material for teapot
-	//parametres: ambient (r,g,b), diffuse (r,g,b), specular (r,g,b), reflectibility/shininess (0-128)
-	setMaterial(0.2, 0.2, 0.2, 0.6, 0.6, 0.6, 0.8, 0.8, 0.8, 60); //differnet intensities of white light
-	//draw teapot
-	glutSolidTeapot(1);
+	glPushMatrix();
+		glTranslatef(-1, 0, 0); //translates the scene on x-axis
+		///render A simple Teapot
+		//set color
+		//set material for teapot
+		//parametres: ambient (r,g,b), diffuse (r,g,b), specular (r,g,b), reflectibility/shininess (0-128)
+		setMaterial(0.2, 0.2, 0.2, 0.6, 0.6, 0.6, 0.8, 0.8, 0.8, 40); //differnet intensities of white light
+		glRotatef(angle, 1, 0, 0);
+		//draw teapot
+		glutSolidTeapot(1);
+	glPopMatrix();
+
+	///2. default gl cube
+	glColor3f(0, 1, 1);
+	glPushMatrix();
+		glTranslatef(1, 0, 0);
+		glutSolidCube(1);
+	glPopMatrix();
+
 	
 
 	// Flush the drawing routines to the window (pushing drawing onto window)
