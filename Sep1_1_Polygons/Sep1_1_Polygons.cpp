@@ -46,23 +46,27 @@ void display_hexagon_triangle()
 	glVertex2d(320, 10);
 	glVertex2i(10, 206);
 	glVertex2d(620, 206);
-	glEnd();
+	//glEnd();
 
-	glBegin(GL_TRIANGLES);
+	/*
+	* You don't need to specify glBegin multiple times. Just make sure that the number of vertices are a multiple of 3
+	*/
+
+	//glBegin(GL_TRIANGLES);
 	glColor3f(0.0, 0.0, 255.0);
 	glVertex2d(620, 206);
 	glVertex2i(10, 206);
 	glVertex2d(10, 412);
-	glEnd();
+	//glEnd();
 
-	glBegin(GL_TRIANGLES);
+	//glBegin(GL_TRIANGLES);
 	glColor3f(255.0, 0.0, 0.0);
 	glVertex2d(620, 412);
 	glVertex2i(620, 206);
 	glVertex2d(10, 412);
-	glEnd();
+	//glEnd();
 
-	glBegin(GL_TRIANGLES);
+	//glBegin(GL_TRIANGLES);
 	glColor3f(0.0, 150.0, 150.0);
 	glVertex2d(320, 630);
 	glVertex2i(620, 412);
